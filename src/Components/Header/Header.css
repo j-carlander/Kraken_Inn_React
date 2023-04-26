@@ -1,0 +1,8 @@
+.link {
+  padding: 0.5em 1em;
+  margin: 0.5em;
+}
+
+.active-link {
+  background-color: #c1c1c1;
+}

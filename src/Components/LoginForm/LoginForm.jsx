@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { fetchAuth } from "../Fetch/Fetch";
 
-export function LoginForm(props) {
+export function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,7 +18,7 @@ export function LoginForm(props) {
   }
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="login-form">
         <div className="input-group">
           <label htmlFor="username">Username: </label>
           <input
@@ -27,7 +27,6 @@ export function LoginForm(props) {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          <span>{username}</span>
         </div>
         <div className="input-group">
           <label htmlFor="password">Password: </label>
@@ -37,10 +36,11 @@ export function LoginForm(props) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <span>{password}</span>
         </div>
-        <button type="submit">Submit</button>
-        <button type="reset">Clear</button>
+        <div className="btn-group">
+          <button type="reset">Clear</button>
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </>
   );

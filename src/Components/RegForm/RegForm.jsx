@@ -1,27 +1,28 @@
 import { useState } from "react";
 import { fetchAuth } from "../Fetch/Fetch";
 
-import "./RegForm.css";
-
-export function RegForm(props) {
+export function RegForm() {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [reTypePass, setReTypePass] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    let submitedDetails = {
-      username,
-      password,
-    };
-    await fetchAuth(submitedDetails, "/register");
-    setUsername("");
-    setPassword("");
+    if (reTypePass === password) {
+      let submitedDetails = {
+        username,
+        password,
+      };
+      await fetchAuth(submitedDetails, "/register");
+      setUsername("");
+      setPassword("");
+    }
   }
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="register-form">
         <div className="input-group">
           <label htmlFor="username">Username: </label>
           <input
@@ -29,6 +30,16 @@ export function RegForm(props) {
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+          />
+          <span>{username}</span>
+        </div>
+        <div className="input-group">
+          <label htmlFor="email">Email: </label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <span>{username}</span>
         </div>
@@ -42,7 +53,7 @@ export function RegForm(props) {
           />
           <span>{password}</span>
         </div>
-        <div>
+        <div className="input-group">
           <label htmlFor="reTypePass">Retype Password: </label>
           <input
             className={
@@ -57,8 +68,10 @@ export function RegForm(props) {
           />
           <span>{reTypePass}</span>
         </div>
-        <button type="submit">Submit</button>
-        <button type="reset">Clear</button>
+        <div className="btn-group">
+          <button type="reset">Clear</button>
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </>
   );
