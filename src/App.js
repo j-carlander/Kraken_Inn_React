@@ -12,16 +12,15 @@ import { Logout } from "./Pages/Logout";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [cart, setCart] = useState([]);
+
   return (
     <div className="page-wrapper">
       <Header loggedIn={loggedIn} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
-        <Route
-          path="/register"
-          element={<Register setLoggedIn={setLoggedIn} />}
-        />
+        <Route path="/register" element={<Register />} />
         <Route path="/food" element={<Food />} />
         <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} />} />
         <Route path="*" element={<NoPage />} />

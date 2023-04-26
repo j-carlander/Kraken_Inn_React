@@ -1,37 +1,12 @@
-import { useState } from "react";
-import { fetchAuth } from "../../Service/Fetch/Fetch";
-import { useNavigate } from "react-router-dom";
-
-export function LoginForm({ setLoggedIn }) {
-  const navigate = useNavigate();
-
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    let submitedDetails = {
-      username,
-      password,
-    };
-    const loggedIn = await fetchAuth(submitedDetails, "/login", setLoggedIn);
-
-    if (loggedIn.jwt) {
-      sessionStorage.setItem("JWT_TOKEN", loggedIn.jwt);
-      setUsername("");
-      setPassword("");
-      setLoggedIn(true);
-      navigate("/");
-    }
-    if (loggedIn?.msg) {
-      setErrorMsg(loggedIn.msg);
-    }
-  }
+export function LoginForm({
+  handleSubmit,
+  setUsername,
+  setPassword,
+  username,
+  password,
+}) {
   return (
     <>
-      <p className="error-msg">{errorMsg}</p>
       <form onSubmit={handleSubmit} className="login-form">
         <div className="input-group">
           <label htmlFor="username">Username: </label>

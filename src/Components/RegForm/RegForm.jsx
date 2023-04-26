@@ -1,40 +1,16 @@
-import { useState } from "react";
-import { fetchAuth } from "../../Service/Fetch/Fetch";
-import { useNavigate } from "react-router-dom";
-
-export function RegForm({ setLoggedIn }) {
-  const navigate = useNavigate();
-
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [reTypePass, setReTypePass] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    if (reTypePass === password) {
-      let submitedDetails = {
-        username,
-        password,
-      };
-      let registered = await fetchAuth(submitedDetails, "/register");
-      if (registered?.acknowledged) {
-        setUsername("");
-        setPassword("");
-        setEmail("");
-        setReTypePass("");
-        navigate("/login");
-      }
-      if (registered?.msg) {
-        setErrorMsg(registered.msg);
-      }
-    }
-  }
+export function RegForm({
+  handleSubmit,
+  setUsername,
+  setPassword,
+  username,
+  password,
+  email,
+  setEmail,
+  reTypePass,
+  setReTypePass,
+}) {
   return (
     <>
-      <p className="error-msg">{errorMsg}</p>
       <form onSubmit={handleSubmit} className="register-form">
         <div className="input-group">
           <label htmlFor="username">Username: </label>

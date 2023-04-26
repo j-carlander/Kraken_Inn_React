@@ -1,13 +1,10 @@
 import { NavLink } from "react-router-dom";
 import "./Header.css";
-import logo from "../../images/main-banner.png";
+import banner from "../../images/main-banner.png";
 
 export function Header({ loggedIn }) {
   return (
     <header className="page-header">
-      <div>
-        <img src={logo} alt="" />
-      </div>
       <nav>
         <NavLink
           to="/"
@@ -52,6 +49,9 @@ export function Header({ loggedIn }) {
           </>
         )}
       </nav>
+      <div>
+        <img src={banner} alt="" />
+      </div>
     </header>
   );
 }
