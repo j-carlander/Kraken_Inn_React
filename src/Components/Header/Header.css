@@ -1,8 +1,17 @@
+.page-header {
+  display: grid;
+  place-items: center;
+}
+
 .link {
   padding: 0.5em 1em;
   margin: 0.5em;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 0.3em;
 }
 
 .active-link {
-  background-color: #c1c1c1;
+  background-color: bisque;
+  color: #111;
 }

@@ -1,3 +1,42 @@
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.page-wrapper {
+  width: max-content;
+  max-width: 400px;
+  max-height: 844px;
+  margin: 2em auto;
+  display: grid;
+  place-items: center;
+  background-image: url(./images/pirateShip.png);
+  overflow-y: scroll;
+}
+
+.page-article {
+  width: 70%;
+  margin: 1em auto;
+  padding: 0 2em;
+  background-color: bisque;
+  display: grid;
+  place-items: center;
+}
 .login-form,
 .register-form {
   display: grid;
@@ -18,4 +57,14 @@
 }
 .missmatch {
   outline: 2px solid red;
+}
+
+.food-card {
+  display: flex;
+  gap: 0.5em;
+  margin: 0.5em 0;
+}
+
+.food-img {
+  width: 100px;
 }

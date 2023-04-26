@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { fetchAuth } from "../Fetch/Fetch";
+import { fetchAuth } from "../../Service/Fetch/Fetch";
+import { useNavigate } from "react-router-dom";
 
-export function RegForm() {
+export function RegForm({ setLoggedIn }) {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [reTypePass, setReTypePass] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -15,13 +19,22 @@ export function RegForm() {
         username,
         password,
       };
-      await fetchAuth(submitedDetails, "/register");
-      setUsername("");
-      setPassword("");
+      let registered = await fetchAuth(submitedDetails, "/register");
+      if (registered?.acknowledged) {
+        setUsername("");
+        setPassword("");
+        setEmail("");
+        setReTypePass("");
+        navigate("/login");
+      }
+      if (registered?.msg) {
+        setErrorMsg(registered.msg);
+      }
     }
   }
   return (
     <>
+      <p className="error-msg">{errorMsg}</p>
       <form onSubmit={handleSubmit} className="register-form">
         <div className="input-group">
           <label htmlFor="username">Username: </label>
@@ -31,7 +44,6 @@ export function RegForm() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          <span>{username}</span>
         </div>
         <div className="input-group">
           <label htmlFor="email">Email: </label>
@@ -41,7 +53,6 @@ export function RegForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <span>{username}</span>
         </div>
         <div className="input-group">
           <label htmlFor="password">Password: </label>
@@ -51,7 +62,6 @@ export function RegForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <span>{password}</span>
         </div>
         <div className="input-group">
           <label htmlFor="reTypePass">Retype Password: </label>
@@ -66,7 +76,6 @@ export function RegForm() {
             value={reTypePass}
             onChange={(e) => setReTypePass(e.target.value)}
           />
-          <span>{reTypePass}</span>
         </div>
         <div className="btn-group">
           <button type="reset">Clear</button>
