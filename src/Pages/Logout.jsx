@@ -1,8 +1,9 @@
 import { Navigate } from "react-router-dom";
 
 export function Logout({ setLoggedIn }) {
-  if (sessionStorage.getItem("JWT_TOKEN")) {
-    sessionStorage.removeItem("JWT_TOKEN");
+  if (localStorage.getItem("JWT_TOKEN")) {
+    localStorage.removeItem("JWT_TOKEN");
+    localStorage.removeItem("USERNAME");
     setLoggedIn(false);
   }
 

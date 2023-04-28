@@ -11,22 +11,19 @@ const testOrders = [
 ];
 
 export function Profile() {
-  const [debitCard, setDebitCard] = useState();
-  const [address, setAddress] = useState();
+  const [debitCard, setDebitCard] = useState("");
+  const [address, setAddress] = useState("");
   const [balance, setBalance] = useState(200);
   const [orders, setOrders] = useState(testOrders);
 
-  function handleNewDebitCard(e) {
-    let cardNo = e.target.value;
-    setDebitCard(cardNo);
+  function handleAddDebitCard(card) {
+    setDebitCard(card);
   }
-  function handleNewAddress(e) {
-    let address = e.target.value;
+  function handleNewAddress(address) {
     setAddress(address);
   }
-  function handleAddBalance(e) {
-    let newBalance = e.target.value;
-    setBalance((prev) => prev + newBalance);
+  function handleAddBalance() {
+    setBalance((prev) => prev + 100);
   }
 
   return (
@@ -37,7 +34,7 @@ export function Profile() {
         debitCard={debitCard}
         address={address}
         balance={balance}
-        handleNewDebitCard={handleNewDebitCard}
+        handleAddDebitCard={handleAddDebitCard}
         handleNewAddress={handleNewAddress}
         handleAddBalance={handleAddBalance}
       />

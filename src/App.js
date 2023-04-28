@@ -10,9 +10,12 @@ import { NoPage } from "./Pages/NoPage";
 import { Food } from "./Pages/Food";
 import { Logout } from "./Pages/Logout";
 import { Profile } from "./Pages/Profile";
+import { Footer } from "./Components/Footer/Footer";
+
+const initialLoggedInStatus = localStorage.getItem("JWT_TOKEN") ? true : false;
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(initialLoggedInStatus);
   const [cart, setCart] = useState([]);
 
   return (
@@ -27,6 +30,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

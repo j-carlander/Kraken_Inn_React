@@ -21,12 +21,12 @@ export function Login({ setLoggedIn }) {
     const loggedIn = await fetchAuth(submitedDetails, "/login", setLoggedIn);
 
     if (loggedIn.jwt) {
-      sessionStorage.setItem("JWT_TOKEN", loggedIn.jwt);
+      localStorage.setItem("JWT_TOKEN", loggedIn.jwt);
       setUsername("");
       setPassword("");
       setLoggedIn(true);
       navigate("/food");
-      sessionStorage.setItem("USERNAME", loggedIn.username);
+      localStorage.setItem("USERNAME", loggedIn.username);
     }
     if (loggedIn.msg) {
       setErrorMsg(loggedIn.msg);

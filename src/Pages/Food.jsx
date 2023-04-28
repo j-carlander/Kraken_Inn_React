@@ -13,7 +13,7 @@ export function Food() {
     <article className="page-article">
       <h2>Food Menu </h2>
       {foodItems.length > 0 &&
-        foodItems.map((food) => <FoodCard food={food} />)}
+        foodItems.map((food) => <FoodCard key={food.id} food={food} />)}
     </article>
   );
 }

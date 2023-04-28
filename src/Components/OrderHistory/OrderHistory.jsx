@@ -5,7 +5,7 @@ export function OrderHistory({ orders }) {
     <section>
       <h3>Order History</h3>
       {orders.map((order) => (
-        <Order order={order} />
+        <Order key={order.name} order={order} />
       ))}
     </section>
   );

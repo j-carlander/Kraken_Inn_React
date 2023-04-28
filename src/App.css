@@ -129,3 +129,8 @@
   background-color: rgb(255, 210, 155);
   color: #111;
 }
+.page-footer {
+  color: #fff;
+  font-size: large;
+  font-weight: bold;
+}

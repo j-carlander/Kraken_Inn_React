@@ -2,49 +2,65 @@ import { useState } from "react";
 
 export function BillingProfile({
   debitCard,
-  handleNewDebitCard,
+  handleAddDebitCard,
   address,
   handleNewAddress,
   balance,
   handleAddBalance,
 }) {
-  const [newDebitCard, setNewDebitCard] = useState();
-  const [newAddress, setNewAddress] = useState();
+  const [newDebitCard, setNewDebitCard] = useState("");
+  const [newAddress, setNewAddress] = useState("");
 
   return (
     <section>
       <h3>Billing</h3>
       <div>
-        <label htmlFor="debitCard">Debit Card: </label>
-
-        {debitCard ? (
-          <span>{debitCard}</span>
-        ) : (
-          <input
-            id="debitCard"
-            type="number"
-            value={newDebitCard}
-            onChange={(e) => setNewDebitCard(e.target.value)}
-            onBlur={handleNewDebitCard}
-          />
-        )}
+        <p>Debit Card: </p>
+        <BillingField
+          displayValue={debitCard}
+          fieldValue={newDebitCard}
+          setFieldValue={setNewDebitCard}
+          handleAddValue={handleAddDebitCard}
+          type="number"
+        />
       </div>
       <div>
-        <label htmlFor="address">Address: </label>
-        {address ? (
-          <span>{address}</span>
-        ) : (
-          <input
-            id="address"
-            type="text"
-            value={newAddress}
-            onChange={(e) => setNewAddress(e.target.value)}
-            onBlur={handleNewAddress}
-          />
-        )}
+        <p>Address: </p>
+        <BillingField
+          displayValue={address}
+          fieldValue={newAddress}
+          setFieldValue={setNewAddress}
+          handleAddValue={handleNewAddress}
+          type="text"
+        />
       </div>
       <p>Balance: {balance}</p>
       <button onClick={handleAddBalance}>Add Balance</button>
     </section>
+  );
+}
+
+function BillingField({
+  displayValue,
+  fieldValue,
+  setFieldValue,
+  handleAddValue,
+  type,
+}) {
+  if (displayValue) return <span>{displayValue}</span>;
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleAddValue(fieldValue);
+      }}>
+      <input
+        id="debitCard"
+        type={type}
+        value={fieldValue}
+        onChange={(e) => setFieldValue(e.target.value)}
+      />
+      <button type="submit">Add</button>
+    </form>
   );
 }

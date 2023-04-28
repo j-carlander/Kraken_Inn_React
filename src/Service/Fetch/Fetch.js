@@ -13,7 +13,6 @@ export async function fetchAuth(userDetails, endpoint) {
     headers: headersList,
   });
   let result = await response.json();
-  console.log(result);
 
   return result;
 }
@@ -25,14 +24,12 @@ export async function fetchFood() {
       "Content-Type": "application/json",
       Authorization: "Bearer " + sessionStorage.getItem("JWT_TOKEN"),
     };
-    console.log(headersList);
 
     let response = await fetch("http://127.0.0.1:4000/food", {
       method: "GET",
       headers: headersList,
     });
     let result = await response.json();
-    console.log(result);
 
     return result;
   }
