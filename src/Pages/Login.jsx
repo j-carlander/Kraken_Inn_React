@@ -36,7 +36,7 @@ export function Login({ setLoggedIn }) {
   return (
     <article className="page-article">
       <h2>Log in</h2>
-      <p className="error-msg">{errorMsg}</p>
+
       <LoginForm
         handleSubmit={handleSubmit}
         username={username}
@@ -44,6 +44,7 @@ export function Login({ setLoggedIn }) {
         password={password}
         setPassword={setPassword}
       />
+      <p className="error-msg">{errorMsg}</p>
     </article>
   );
 }

@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AccountProfile } from "../Components/AccountProfile/AccountProfile";
 import { BillingProfile } from "../Components/BillingProfile/BillingProfile";
 import { OrderHistory } from "../Components/OrderHistory/OrderHistory";
+import { Navigate } from "react-router-dom";
+import { fetchProfile } from "../Service/Fetch/Fetch";
 
 const testOrders = [
   { name: "Order 1", details: "...some food ordered" },
@@ -13,17 +15,42 @@ const testOrders = [
 export function Profile() {
   const [debitCard, setDebitCard] = useState("");
   const [address, setAddress] = useState("");
-  const [balance, setBalance] = useState(200);
+  const [balance, setBalance] = useState(0);
   const [orders, setOrders] = useState(testOrders);
 
-  function handleAddDebitCard(card) {
-    setDebitCard(card);
+  useEffect(() => {
+    let ignore = false;
+
+    if (localStorage.getItem("JWT_TOKEN")) {
+      fetchProfile("get", "profile")
+        .then((result) => result.json())
+        .then((data) => {
+          if (!ignore) {
+            setDebitCard(data.debit_card);
+            setAddress(data.address);
+            setBalance(data.balance);
+          }
+        });
+    }
+
+    return () => (ignore = true);
+  }, []);
+
+  if (!localStorage.getItem("JWT_TOKEN")) {
+    return <Navigate to="/login" />;
   }
-  function handleNewAddress(address) {
-    setAddress(address);
+
+  async function handleAddDebitCard(debitcard) {
+    let result = await fetchProfile("PUT", "debitcard", { debitcard });
+    // if (result.status === 200) setDebitCard(debitcard);
   }
-  function handleAddBalance() {
-    setBalance((prev) => prev + 100);
+  async function handleNewAddress(address) {
+    let result = await fetchProfile("PUT", "address", { address });
+    // if (result.status === 200) setAddress(address);
+  }
+  async function handleAddBalance() {
+    let result = await fetchProfile("PATCH", "balance", { balance: 100 });
+    if (result.status === 200) setBalance((prev) => prev + 100);
   }
 
   return (
@@ -32,7 +59,9 @@ export function Profile() {
       <AccountProfile />
       <BillingProfile
         debitCard={debitCard}
+        setDebitCard={setDebitCard}
         address={address}
+        setAddress={setAddress}
         balance={balance}
         handleAddDebitCard={handleAddDebitCard}
         handleNewAddress={handleNewAddress}

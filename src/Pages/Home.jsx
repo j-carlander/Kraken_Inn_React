@@ -4,8 +4,8 @@ export function Home() {
   return (
     <article className="home-article">
       <div className="title-block">
-        <p className="pre-title ff-lylas">Ahoy scallywag,</p>
-        <p className="pre-title-smaller ff-lylas">welcome to</p>
+        <p className="fs-2rem ff-lylas">Ahoy scallywag,</p>
+        <p className="fs-1_75rem ff-lylas">welcome to</p>
         <h1 className="project-title ff-lylas">The Kraken Inn!</h1>
       </div>
       <p className="home-cta ff-lylas">

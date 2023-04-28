@@ -80,10 +80,10 @@
   width: 100px;
 }
 
-.pre-title {
+.fs-2rem {
   font-size: 2rem;
 }
-.pre-title-smaller {
+.fs-1_75rem {
   font-size: 1.75rem;
 }
 .project-title {
@@ -133,4 +133,10 @@
   color: #fff;
   font-size: large;
   font-weight: bold;
+}
+.ptag-input {
+  cursor: pointer;
+}
+.profile-section {
+  width: 100%;
 }
