@@ -9,6 +9,7 @@ import { Header } from "./Components/Header/Header";
 import { NoPage } from "./Pages/NoPage";
 import { Food } from "./Pages/Food";
 import { Logout } from "./Pages/Logout";
+import { Profile } from "./Pages/Profile";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -23,6 +24,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/food" element={<Food />} />
         <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </div>

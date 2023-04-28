@@ -4,7 +4,10 @@
   place-items: center;
   padding: 1em 0;
 }
-
+.page-nav {
+  position: sticky;
+  top: 0;
+}
 .link {
   padding: 0.5em 1em;
   margin: 0.5em;

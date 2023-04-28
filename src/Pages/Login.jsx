@@ -26,8 +26,9 @@ export function Login({ setLoggedIn }) {
       setPassword("");
       setLoggedIn(true);
       navigate("/food");
+      sessionStorage.setItem("USERNAME", loggedIn.username);
     }
-    if (loggedIn?.msg) {
+    if (loggedIn.msg) {
       setErrorMsg(loggedIn.msg);
     }
   }

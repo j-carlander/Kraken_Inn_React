@@ -5,7 +5,7 @@ import banner from "../../images/main-banner.png";
 export function Header({ loggedIn }) {
   return (
     <header className="page-header">
-      <nav>
+      <nav className="page-nav">
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -38,6 +38,13 @@ export function Header({ loggedIn }) {
                 isActive ? "link active-link" : "link"
               }>
               Food
+            </NavLink>
+            <NavLink
+              to="/profile"
+              className={({ isActive }) =>
+                isActive ? "link active-link" : "link"
+              }>
+              Profile
             </NavLink>
             <NavLink
               to="/logout"
